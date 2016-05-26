@@ -1,12 +1,11 @@
-<html>
+<html ng-app="app">
 	<head>
+		<script src="js/lib/angular.min.js"></script>
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-
-		<script src="js/script.js"></script>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" ng-controller="mainPage">
 
 
 			<section>
@@ -18,21 +17,21 @@
 					<form class="form-horizontal">
 						<div class="left">
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+								<label for="inputPassword3" class="col-sm-2 control-label">Model</label>
 								<div class="col-sm-10">
-									<select class="form-control">
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
+									<input type="text" class="form-control" id="inputPassword3" placeholder="Model Name" ng-model="query">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+								<label for="inputEmail3" class="col-sm-2 control-label">Brand</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="inputPassword3" placeholder="Password">
+									<select class="form-control">
+										<option>Sony</option>
+										<option>Samsung</option>
+										<option>Apple</option>
+										<option>Nokia</option>
+										<option>LG</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -48,11 +47,26 @@
 				</div>
 
 				<table class="table table-bordered table-striped">
-					<tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr>
-					<tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr>
-					<tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr>
-					<tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr>
+
+
+					<tr> <th></th> <th>Brand</th> <th>Model</th> <th>Year</th> </tr>
+					<tr ng-repeat="phone in phones | filter:query" data-info="{{phone.info}}">
+						<th scope="row">{{phones.indexOf(phone) + 1}}</th>
+						<td>{{phone.brand}}</td>
+						<td>{{phone.model}}</td>
+						<td>{{phone.year}}</td>
+					</tr>
+
+
 				</table>
+
+
+				<div class="panel panel-default">
+					<div class="panel-heading text-center"><strong>Panel heading</strong></div>
+					<div class="panel-body">
+						{{currentInfo}}
+					</div>
+				</div>
 
 			</section>
 			<aside></aside>
@@ -61,5 +75,7 @@
 
 		</div>
 
+		<script src="js/script.js"></script>
+		<script src="js/controller/mainPage.js"></script>
 	</body>
 </html>
